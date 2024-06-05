@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Tip Calculator</title>
+	<script src="calc.js"></script>
+</head>
+<style>
+	.calc-grid {
+		display: grid;
+		grid-template-columns: 13em 5em;
+	}
+	
+	.cols2 {
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+</style>
+<body>
+	<div class="calc-grid">
+		<h3 class="cols2" style="margin-top: 0; margin-bottom: 5px; text-align:center;">
+			Tip Calculator
+		</h3>
+		
+		<label for="bill">Bill ($)</label>
+		<input type="number" id="bill" value=0 onchange="calculate();">
+		
+		<label for="tip">Tip (%)</label>
+		<select name="tip" id="tip" onchange="tipChange();">
+			<option value=0>0</option>
+			<option value=10>10</option>
+			<option value=15>15</option>
+			<option value=20>20</option>
+			<option value=-1>custom</option>
+		</select>
+		
+		<div class="calc-grid cols2" id="tip_custom_div" style="display: none">
+			<label for="tip_custom">Custom Tip Amount ($)</label>
+			<input type="number" id="tip_custom" value=0 onchange="calculate();">
+		</div>
+		
+		<label for="people">Number of People:</label>
+		<input type="number" id="people" value=1 onchange="peopleChange();">
+		
+		<div>Tip Amount:</div>
+		<div id="result_tip">$0</div>
+		
+		<div>Total With Tip:</div>
+		<div id="result_total">$0</div>
+		
+		<div class="calc-grid cols2" id="per_person_div" style="display: none">
+			<div>Bill Per Person:</div>
+			<div id="result_bill_split">$0</div>
+			
+			<div>Tip Per Person:</div>
+			<div id="result_tip_split">$0</div>
+			
+			<div>Total Per Person:</div>
+			<div id="result_total_split">$0</div>
+		</div>
+		
+		<button type="button" class="cols2" onclick="reset();">
+			Reset
+		</button> 
+	</div>
+</body>
+<script>
+	init();
+</script>
